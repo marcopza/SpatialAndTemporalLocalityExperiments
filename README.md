@@ -1,2 +1,2 @@
 # SpatialAndTemporalLocalityExperiments
-Implementation and statistical analysis dobe by: Marco Antonio Pérez, Fabio Andrés Mejía.
+Implementation and statistical analysis done by: Marco Antonio Pérez, Fabio Andrés Mejía.
