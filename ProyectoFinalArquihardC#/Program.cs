@@ -15,7 +15,6 @@ namespace ProyectoFinalArquihard
         {
             string path = @"resources\1.bmp";
             string path2 = @"resources\resultado.bmp";
-            StreamWriter streamw = new StreamWriter(@"resources\tiempo.txt");
             Bitmap img = (Bitmap)Image.FromFile(path);
             Int64 count = 0;
             Int64 version = 1;
@@ -197,8 +196,7 @@ namespace ProyectoFinalArquihard
             long tiempo = (long)(sw.Elapsed.TotalMilliseconds * 1000000);
             Image img1 = (Image) img.Clone();
             img1.Save(path2);
-            streamw.WriteLine(tiempo);
-            streamw.Close();
+            Console.Write(tiempo);
         }
     }
 }
