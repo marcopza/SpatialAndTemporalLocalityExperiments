@@ -13,9 +13,9 @@ namespace ProyectoFinalArquihard
     {
         static void Main(string[] args)
         {
-            string path = @"..\..\resources\1.bmp";
-            string path2 = @"..\..\resources\resultado.bmp";
-            StreamWriter streamw = new StreamWriter(@"..\..\resources\tiempo.txt");
+            string path = @"resources\1.bmp";
+            string path2 = @"resources\resultado.bmp";
+            StreamWriter streamw = new StreamWriter(@"resources\tiempo.txt");
             Bitmap img = (Bitmap)Image.FromFile(path);
             Int64 count = 0;
             Int64 version = 1;
