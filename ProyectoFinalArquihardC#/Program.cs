@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +15,11 @@ namespace ProyectoFinalArquihard
         {
             string path = @"..\..\resources\1.bmp";
             string path2 = @"..\..\resources\resultado.bmp";
+            StreamWriter streamw = new StreamWriter(@"..\..\resources\tiempo.txt");
             Bitmap img = (Bitmap)Image.FromFile(path);
             Int64 count = 0;
-            Int64 version = 4;
+            Int64 version = 1;
+            Stopwatch sw = new Stopwatch();
             switch (version)
             {
 
@@ -23,6 +27,8 @@ namespace ProyectoFinalArquihard
                     /*
                      * Versión 1 del algoritmo. 
                      */
+                    sw.Restart();
+                    sw.Start();
                     for (int i = 0; i < img.Width; i++)
                     {
                         for (int j = 0; j < img.Height; j++)
@@ -36,13 +42,15 @@ namespace ProyectoFinalArquihard
                             count += 3;
                         }
                     }
+                    sw.Stop();
                     break;
 
                 case 2:
                     /*
                      * Versión 2 del algoritmo
                      */
-
+                    sw.Restart();
+                    sw.Start();
                     for (int i = 0; i < img.Width; i++)
                     {
                         for (int j = 0; j < img.Height; j++)
@@ -78,12 +86,15 @@ namespace ProyectoFinalArquihard
                             count += 1;
                         }
                     }
+                    sw.Stop();
                     break;
 
                 case 3:
                     /**
                      * Versión 3
                      */
+                    sw.Restart();
+                    sw.Start();
                     for (int i = 0; i < img.Height; i++)
                     {
                         for (int j = 0; j < img.Width; j++)
@@ -97,12 +108,15 @@ namespace ProyectoFinalArquihard
                             count += 3;
                         }
                     }
+                    sw.Stop();
                     break;
 
                 case 4:
                     /*
                      * Versión 4
                      */
+                    sw.Restart();
+                    sw.Start();
                     for (int i = 0; i < img.Width; i++)
                     {
                         for (int j = 0; j < img.Height; j++)
@@ -127,12 +141,15 @@ namespace ProyectoFinalArquihard
                             count += 2;
                         }
                     }
+                    sw.Stop();
                     break;
 
                 case 5:
                     /*
                      * Versión 5
                      */
+                    sw.Restart();
+                    sw.Start();
                     for (int i = 0; i < img.Width - 1; i += 2)
                     {
                         for (int j = 0; j < img.Height - 1; j += 2)
@@ -169,6 +186,7 @@ namespace ProyectoFinalArquihard
                         }
 
                     }
+                    sw.Stop();
                     break;
 
                 default:
@@ -176,8 +194,11 @@ namespace ProyectoFinalArquihard
                     break;
 
             }
+            long tiempo = (long)(sw.Elapsed.TotalMilliseconds * 1000000);
             Image img1 = (Image) img.Clone();
             img1.Save(path2);
+            streamw.WriteLine(tiempo);
+            streamw.Close();
         }
     }
 }
