@@ -13,12 +13,39 @@ namespace ProyectoFinalArquihard
     {
         static void Main(string[] args)
         {
-            string path = @"resources\1.bmp";
             string path2 = @"resources\resultado.bmp";
+            string path3 = @"resources\resultados.csv";
+            StreamWriter tw = new StreamWriter(path3);
+
+            Stopwatch sw = new Stopwatch();
+            for (int j = 1; j <= 8; j++)
+            {
+                string path = @"resources\" + j + ".bmp";
+                string result = "";
+                for (int k = 1; k <= 5; k++)
+                {
+                    result = "";
+                    for (int i = 0; i < 40; i++)
+                    {
+                        if (i == 39)
+                        {
+                            result += execute(path, k, sw, path2);
+                        }
+                        else
+                        {
+                            result += execute(path, k, sw, path2) + ";";
+                        }
+                    }
+                    tw.WriteLine(result);
+                }
+            }
+            tw.Close();
+        }
+
+        public static long execute(string path, int version, Stopwatch sw, string path2)
+        {
             Bitmap img = (Bitmap)Image.FromFile(path);
             Int64 count = 0;
-            Int64 version = 1;
-            Stopwatch sw = new Stopwatch();
             switch (version)
             {
 
@@ -194,9 +221,9 @@ namespace ProyectoFinalArquihard
 
             }
             long tiempo = (long)(sw.Elapsed.TotalMilliseconds * 1000000);
-            Image img1 = (Image) img.Clone();
+            Image img1 = (Image)img.Clone();
             img1.Save(path2);
-            Console.Write(tiempo);
+            return tiempo;
         }
     }
 }
